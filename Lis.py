@@ -41,6 +41,7 @@ def decrypt(x: str) -> str:
     size = re.match('[0-9]+', x).group()
     lis = {}
     text = []
+    res = ""
     for i in range(int(size)):
         text.append(0)
     x = x[len(size)+5:]
@@ -49,7 +50,12 @@ def decrypt(x: str) -> str:
     #[h%1@0$, e%1@1$, l%2@2$3$, o%1@4$]
     for i in range(len(x)):
         lis[x[i].split("%")[0]] = dlist(x[i].split('@')[1])
-    return lis
+    for i in lis:
+        for e in lis[i]:
+            text[e] = i
+    for i in text:
+        res += i
+    return res
 
 
 if __name__ == "__main__":
