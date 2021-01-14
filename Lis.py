@@ -1,7 +1,6 @@
 import color
 import re
-
-#5(°-°)h%1@0$^e%1@1$^l%2@2$3$^o%1@4$^
+import caesar
 
 def plist(letter: str, word: str) -> list:
     l = []
@@ -18,6 +17,7 @@ def dlist(x: list) -> list:
 
 
 def encrypt(x: str) -> str:
+    x = caesar.caen(x, 3)
     pd = []
     pp = {}
     for i in range(len(x)):
@@ -32,14 +32,13 @@ def encrypt(x: str) -> str:
         r = r.replace(',', '')
         r = r.replace(' ', '$')
         s += f"{r}$^"
-    f=open("debug", 'w+'); f.write(str(pp));f.close()
-    f=open("output", 'w+'); f.write(str(s));f.close()
     return s
 
 
 def decrypt(x: str) -> str:
+    x = caesar.cade(x, 3)
     size = re.match('[0-9]+', x).group()
-    print(size)
+#    print(size)
     lis = {}
     text = []
     res = ""
@@ -75,7 +74,4 @@ if __name__ == "__main__":
         print(decrypt(t))
     else:
         print(f"\n{color.red}Opción inexistente.{color.nm}")
-
-#t=input()
-#print(decrypt(t))
 
